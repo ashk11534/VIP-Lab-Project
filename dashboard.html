@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+      src="https://kit.fontawesome.com/97727431b8.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid d-flex justify-content-between">
+            <div>
+                <a class="navbar-brand" href="#">
+                    <img src="images/logo.png" style="width: 80px;" class="rounded-circle" alt="logo">
+                </a>
+            </div>
+            <div>
+                <h4>From Dashboard</h4>
+            </div>
+            <div class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <img src="images/joy.jpg" class="rounded-circle" alt="user_image" style="width: 50px;">
+                <li>
+                    <a class="nav-link disabled mr-4">Joy Mojumdar</a>
+                </li>
+                </ul>
+                <form>
+                <button class="btn btn-danger" type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+      </nav>
+      <section class="main-content d-flex align-items-stretch mt-4">
+            <div class="left-nav px-5 border-right" style="width: 20%; color: #ff4757; height: 100vh;">
+                <h6 class="font-weight-bold mb-4"><i class="fas fa-chart-line mr-2"></i> Dashboard</h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item border-bottom">
+                        <a class="nav-link" aria-current="page" href="#">Rent</a>
+                      </li>
+                    <li class="nav-item border-bottom">
+                      <a class="nav-link" aria-current="page" href="#">Bookings</a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                      <a class="nav-link" href="#">Gas Bill</a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                      <a class="nav-link" href="#">Internet Bill</a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a class="nav-link" href="#">Water Bill</a>
+                    </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Electricity Bill</a>
+                    </li>
+                  </ul>
+            </div>
+            <div class="right-content px-5 font-weight-bold" style="width: 80%; color: #ff4757;">
+                SUMMARY
+                <div class="d-flex mt-4">
+                    <div class="progress w-25" style="height: 80px;">
+                        <div class="progress-bar"  role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 50%; background-color: #ff4757;">50%</div>
+                    </div>
+                    <div class="mx-5"></div>
+                    <div class="progress w-25" style="height: 80px;">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 70%; background-color: #ff4757;">70%</div>
+                    </div>
+                </div>
+                
+            </div>
+      </section>
+</body>
+</html>

@@ -1,0 +1,344 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+a, a:hover{
+  text-decoration: none;
+  color: #333;
+}
+.secondary-nav {
+  margin: 0 100px;
+  padding: 20px 0;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.secondary-nav ul {
+  display: flex;
+}
+.secondary-nav ul li {
+  list-style: none;
+}
+.secondary-nav ul li:first-of-type {
+  margin-right: 30px;
+}
+.secondary-nav ul li:last-of-type {
+  margin-left: 30px;
+}
+.secondary-nav .left-items,
+.secondary-nav .right-items {
+  display: flex;
+}
+.secondary-nav .push {
+  margin-left: auto;
+}
+.main-nav {
+  margin: 20px 98px;
+}
+.main-nav ul {
+  display: flex;
+}
+.main-nav a{
+  text-decoration: none;
+  color: black;
+}
+.main-nav ul .nav-items {
+  display: flex;
+  margin-top: 17px;
+}
+.main-nav ul .logo {
+  margin-top: -24px;
+}
+.main-nav ul .nav-items li {
+  list-style: none;
+  margin-right: 40px;
+  font-weight: bold;
+}
+.main-nav .push {
+  margin-left: 860px;
+}
+.welcome {
+  padding: 270px 300px;
+  background-image: url("../images/welcome-img.jpg");
+  background-size: cover;
+  background-position: center center;
+  margin: 20px 0;
+  position: relative;
+  text-align: center;
+}
+.welcome .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+.welcome .overlay h1 {
+  color: #fff;
+  font-size: 60px;
+  margin-top: 160px;
+}
+.welcome .overlay .main-form {
+  margin-top: 40px;
+}
+.welcome .overlay .main-form form input:not(:last-of-type) {
+  padding: 9px 16px;
+  width: 30%;
+  border-radius: 6px;
+  border: 1px solid #ced6e0;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 400;
+}
+.welcome .overlay .main-form form input:focus {
+  outline: none;
+}
+.welcome .overlay .main-form form input:last-of-type {
+  padding: 9px 16px;
+  border-radius: 6px;
+  border: 1px solid #ffa200;
+  margin-left: 10px;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
+  background-color: #ffa200;
+}
+.category {
+  display: flex;
+  justify-content: center;
+}
+.category > div {
+  display: block;
+  width: 20%;
+  height: 100px;
+  margin: 20px;
+  padding: 100px 170px;
+  border-radius: 6px;
+  color: #fff;
+  position: relative;
+}
+.category h2 {
+  white-space: nowrap;
+}
+.category .div-1 {
+  background-image: url("../images/apt-1.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.category .div-2 {
+  background-image: url("../images/apt-2.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.category .div-3 {
+  background-image: url("../images/apt-3.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.category .div-4 {
+  background-image: url("../images/apt-4.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.category .overlay {
+  position: absolute;
+  display: flex;
+  left: 0;
+  bottom: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 6px;
+  transition: 0.5s ease;
+  visibility: hidden;
+}
+.category > div:hover .overlay {
+  bottom: 0;
+  visibility: visible;
+}
+.recent-rents {
+  padding: 90px 0;
+  text-align: center;
+  margin: 0 100px;
+  margin-bottom: 200px;
+}
+.recent-rents hr {
+  width: 40px;
+  margin: 0 auto;
+  height: 2px;
+  border: none;
+  background-color: #ffa200;
+  margin-top: 25px;
+}
+.recent-rents h1 {
+  font-weight: 700;
+  font-size: 38px;
+  color: #333;
+}
+.recent-rents .rents {
+  display: flex;
+  justify-content: center;
+  padding: 35px 0;
+}
+.recent-rents .rents > div {
+  width: 30%;
+  height: 300px;
+  border: 15px solid #fff;
+  text-align: left;
+}
+.recent-rents .rents > div h2 {
+  color: #ffa200;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.recent-rents .rents > div h4 {
+  color: #333;
+}
+.recent-rents .rents .rent-1 img,
+.recent-rents .rents .rent-2 img,
+.recent-rents .rents .rent-3 img {
+  width: 100%;
+}
+.recent-rents .rents > div ul {
+  margin: 20px 0;
+  display: flex;
+}
+.recent-rents .rents > div p {
+  line-height: 1.5;
+}
+.recent-rents .rents > div ul li {
+  margin: 0 5px;
+  list-style: none;
+  color: rgb(110, 109, 109);
+}
+.recent-rents .rents > div ul li:first-of-type {
+  margin: 0 0;
+}
+.get-in-touch {
+  background-image: url("../images/apt-5.jpg");
+  background-size: cover;
+  background-position: center center;
+  min-height: 700px;
+  position: relative;
+}
+.get-in-touch .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+.get-in-touch hr {
+  width: 40px;
+  margin: 0 auto;
+  height: 2px;
+  border: none;
+  background-color: #ffa200;
+  margin-top: 25px;
+  margin-bottom: 60px;
+}
+.get-in-touch h1 {
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 38px;
+  color: #fff;
+}
+.get-in-touch .overlay form > div {
+  width: 50%;
+  margin: 0 auto;
+}
+.get-in-touch .overlay form .div-1,
+.get-in-touch .overlay form .div-2 {
+  display: flex;
+  justify-content: center;
+}
+.get-in-touch .overlay form .div-3 textarea {
+  width: 100%;
+  border-radius: 6px;
+  font-family: "Roboto Mono", monospace;
+  padding: 15px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.get-in-touch .overlay form .div-1 input,
+.get-in-touch .overlay form .div-2 input {
+  width: 50%;
+  padding: 15px;
+  border-radius: 6px;
+  font-family: "Roboto Mono", monospace;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.get-in-touch .overlay form .div-1 input::placeholder,
+.get-in-touch .overlay form .div-2 input::placeholder,
+.get-in-touch .overlay form .div-3 textarea::placeholder {
+  color: #fff;
+}
+.get-in-touch .overlay form .div-1 input:first-of-type,
+.get-in-touch .overlay form .div-2 input:first-of-type {
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+.get-in-touch .overlay form .div-1 input:last-of-type,
+.get-in-touch .overlay form .div-2 input:last-of-type {
+  margin-bottom: 20px;
+}
+.get-in-touch .overlay form input[type="submit"] {
+  margin-top: 25px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #ffa200;
+  color: #fff;
+  border: 1px solid #ffa200;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.get-in-touch .overlay form input[type="submit"]:hover {
+  background-color: #ff7e00;
+  border-color: #ff7e00;
+}
+.footer {
+  min-height: 200px;
+  background-color: #191919;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+.footer .footer-main-content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: left;
+  padding: 40px 0;
+}
+.footer .footer-main-content .group-members {
+  margin-right: 30px;
+}
+.footer .footer-main-content p {
+  line-height: 1.5;
+}
+.footer .footer-main-content .contact i {
+  margin-right: 10px;
+}
+.footer .footer-main-content h3 {
+  color: #ffa200;
+  margin-bottom: 20px;
+}
+.footer > p {
+  line-height: 1.5;
+  color: rgb(189, 184, 184);
+}
