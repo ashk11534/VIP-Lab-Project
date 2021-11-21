@@ -14,6 +14,7 @@ a, a:hover{
   text-decoration: none;
   color: #333;
 }
+/* top-nav css */
 .secondary-nav {
   margin: 0 100px;
   padding: 20px 0;
@@ -39,6 +40,7 @@ a, a:hover{
 .secondary-nav .push {
   margin-left: auto;
 }
+/* bottom-nav css */
 .main-nav {
   margin: 20px 98px;
 }
@@ -64,6 +66,7 @@ a, a:hover{
 .main-nav .push {
   margin-left: 860px;
 }
+/* welcome section css */
 .welcome {
   padding: 270px 300px;
   background-image: url("../images/welcome-img.jpg");
@@ -110,6 +113,7 @@ a, a:hover{
   font-weight: 500;
   background-color: #ffa200;
 }
+/* category section css */
 .category {
   display: flex;
   justify-content: center;
@@ -223,6 +227,7 @@ a, a:hover{
 .recent-rents .rents > div ul li:first-of-type {
   margin: 0 0;
 }
+/* contact section css */
 .get-in-touch {
   background-image: url("../images/apt-5.jpg");
   background-size: cover;
@@ -311,6 +316,7 @@ a, a:hover{
   background-color: #ff7e00;
   border-color: #ff7e00;
 }
+/* footer section css */
 .footer {
   min-height: 200px;
   background-color: #191919;
