@@ -46,7 +46,7 @@
                 ?>
                         <div class="col" style="flex: 0 0 0%; margin-bottom: 25px;">
                             <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="admin/images/flat_images/<?php echo $flat_image ?>" alt="Card image cap">
+                                <img class="card-img-top" src="admin/images/flat_images/<?php echo $flat_image ?>" style="height:15rem;" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $flat_name; ?></h5>
                                     <p class="card-text"><?php echo $flat_description; ?></p>
