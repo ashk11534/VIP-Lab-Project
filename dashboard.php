@@ -1,3 +1,21 @@
+<?php include('tenant/includes/db_connect.php'); ?>
+<?php
+  if(!isset($_GET['id'])){
+    header('location:'.TENANT_PATH.'login.php');
+    die();
+  }
+  if(isset($_GET['id'])){
+    $tenant_id = $_GET['id'];
+  }
+?>
+<?php
+    if(isset($_SESSION['id'])){
+        $id = $_SESSION['id'];
+    }
+    if(isset($_SESSION['name'])){
+        $name = $_SESSION['name'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +34,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid d-flex justify-content-between user-login">
             <div class="logo">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" style="width: 80px;" class="rounded-circle" alt="logo">
-                </a>
+              <a class="navbar-brand" href="<?php echo HOME_PATH; ?>?id=<?php echo $_SESSION['id']; ?>&name=<?php echo $_SESSION['name']; ?>">
+              <img src="images/logo.png" style="width: 80px;" class="rounded-circle" alt="logo">
+            </a>
             </div>
             <div class="ml-4 dropdown d-none">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,14 +56,36 @@
             </div>
             <div class="d-flex user-profile">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <img src="images/joy.jpg" class="rounded-circle" alt="user_image" style="width: 50px;">
+                <?php
+                    $sql = "SELECT * FROM tenant WHERE tenant_id='$tenant_id'";
+                    $res = mysqli_query($conn, $sql);
+                    if($res == TRUE){
+                      $tenant_image = mysqli_fetch_assoc($res)['tenant_image'];
+                    }
+                    ?>
+                    <img src="tenant/images/<?php echo $tenant_image; ?>" class="rounded-circle" alt="user_image" style="width: 50px;">
+                    <?php
+                ?>
+                
                 <li>
-                    <a class="nav-link disabled mr-4">Joy Mojumdar</a>
+                  <?php
+                    if(isset($_GET['name'])){
+                      ?>
+                      <a class="nav-link text-dark mr-4"><?php echo $_GET['name']; ?></a>
+                      <?php
+                    }
+                  ?>
                 </li>
                 </ul>
-                <form>
-                <button class="btn btn-danger" type="submit">Logout</button>
+                <form action="" method="POST">
+                <button class="btn btn-danger" type="submit" name="submit">Logout</button>
                 </form>
+                <?php
+                 if(isset($_POST['submit'])){
+                  unset($_GET['name'], $_GET['id'], $_SESSION['id'], $_SESSION['name']);
+                  header('location:'. HOME_PATH);
+                }
+                ?>
             </div>
         </div>
       </nav>
@@ -75,14 +115,48 @@
             </div> 
             <div class="right-content px-5">
                 <h6 class="font-weight-bold" style="color:#ff4757; margin-bottom: 20px;">CURRENT APARTMENT</h6>
-                <div class="card mb-5" style="width: 18rem;">
-                    <img class="card-img-top" src="images/apt-5.jpg" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Golden House</h5>
-                      <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique, voluptate!</p>
-                      <a href="#" class="btn btn-primary">See Details</a>
+                <?php
+                  $sql_2 = "SELECT * FROM flat WHERE tenant_id = $tenant_id" ;
+                  $res_2 = mysqli_query($conn, $sql_2);
+                  if($res_2 == TRUE){
+                    $count = mysqli_num_rows($res_2);
+                    if($count > 0){
+                      ?>
+                      <div class="container">
+                         <div class="row">
+                    <?php
+                      while($row = mysqli_fetch_assoc($res_2)){
+                        $flat_name = $row['flat_name'];
+                        $flat_image = $row['flat_image'];
+                        $flat_description = $row['flat_description'];
+                        $flat_price = $row['flat_price'];
+                        ?>
+                        <div class="col" style="flex: 0 0 0%; margin-bottom: 25px;">
+                          <div class="card mb-5" style="width: 18rem;">
+                            <img class="card-img-top" src="admin/images/flat_images/<?php echo $flat_image; ?>" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title"><?php echo $flat_name; ?></h5>
+                              <p class="card-text"><?php echo $flat_description; ?></p>
+                              <p>price: <?php echo $flat_price; ?></p>
+                              <a href="#" class="btn btn-primary">See Details</a>
+                            </div>
+                        </div>
+                        </div>
+                        <?php
+                      }
+                      ?>
+                      </div>
                     </div>
-                  </div>
+                      <?php
+                    }
+                    else{
+                      ?>
+                      <div class="text-danger"><h2>No Flat Available</h2></div>
+                      <?php
+                    }
+                  }
+                ?>
+                
                 <h6 class="font-weight-bold" style="color:#ff4757; margin-bottom: 20px;">LATEST PAYMENT</h6>
                 <div class="row">
                     <div class="col">

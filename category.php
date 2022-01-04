@@ -1,3 +1,8 @@
+<?php include('tenant/includes/db_connect.php'); ?>
+<?php 
+  if(isset($_SESSION['id'])){$id = $_SESSION['id'];} 
+  if(isset($_SESSION['name'])){$name = $_SESSION['name'];} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,15 +34,15 @@
       <section class="main-nav">
         <ul>
           <div class="logo">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="<?php echo HOME_PATH.'?id='.$id.'&name='.$name;?>">
               <img src="images/logo.png" style="width: 80px;" class="rounded-circle" alt="logo">
             </a>
           </div>
           <div class="push"></div>
           <div class="nav-items">
-            <a href="index.html"><li>Home</li></a>
-            <a href="category.html"><li>Category</li></a>
-            <a href="about.html"><li>About</li></a>
+            <a href="<?php echo HOME_PATH; ?>?id=<?php echo $_SESSION['id']; ?>&name=<?php echo $_SESSION['name']; ?>"><li>Home</li></a>
+            <a href="category.php"><li>Category</li></a>
+            <a href="about.php"><li>About</li></a>
           </div>
         </ul>
       </section>
@@ -74,6 +79,7 @@
                 </p>
               </div>
             </div>
+            <a href="<?php echo HOME_PATH.'search.php'.'?category_name=duplex'; ?>" class="btn btn-primary">See All Flats</a>
           </div>
       </section>
       <section class="category-main-triplex">
@@ -102,6 +108,7 @@
                 </p>
               </div>
             </div>
+            <a href="<?php echo HOME_PATH.'search.php'.'?category_name=triplex'; ?>" class="btn btn-primary">See All Flats</a>
           </div>
       </section>
       <section class="footer">

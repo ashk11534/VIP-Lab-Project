@@ -1,3 +1,12 @@
+<?php 
+  include('tenant/includes/db_connect.php');
+  if(isset($_GET['id'])){
+    $_SESSION['id'] = $_GET['id'];
+  }
+  if(isset($_GET['name'])){
+    $_SESSION['name'] = $_GET['name'];
+  } 
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,8 +26,8 @@
     <section class="secondary-nav">
       <ul>
         <div class="left-items">
-          <li><a href="login.html">Login</a></li>
-          <li><a href="register.html">Register</a></li>
+          <li><a href="<?php echo TENANT_PATH.'login.php'; ?>">Login</a></li>
+          <li><a href="<?php echo TENANT_PATH.'signup.php'; ?>">Register</a></li>
         </div>
         <div class="push"></div>
         <div class="right-items">
@@ -32,16 +41,38 @@
     <section class="main-nav">
       <ul>
         <div class="logo">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="<?php echo HOME_PATH; ?>?id=<?php if(isset($_GET['id'])){echo $_GET['id'];} ?>&name=<?php if(isset($_GET['name'])){echo $_GET['name'];} ?>">
             <img src="images/logo.png" style="width: 80px;" class="rounded-circle" alt="logo">
           </a>
         </div>
         <div class="push"></div>
         <div class="nav-items">
           <a href=""><li>Home</li></a>
-          <a href="category.html"><li>Category</li></a>
-          <a href="about.html"><li>About</li></a>
+          <a href="<?php echo HOME_PATH.'category.php'; ?>"><li>Category</li></a>
+          <a href="about.php"><li>About</li></a>
+          <a href="<?php echo HOME_PATH.'flat.php'; ?>?id=<?php if(isset($_GET['id'])){echo $_GET['id'];} ?>"><li>Flat</li></a>
           <a href="#contact-us"><li>Contact</li></a>
+          <?php
+            if(isset($_GET['id'])){
+              ?>
+              <a href="<?php echo HOME_PATH.'dashboard.php'; ?>?id=<?php if(isset($_GET['id'])){echo $_GET['id'];} ?>&name=<?php if(isset($_GET['name'])){echo $_GET['name'];}?>"><li>Dashboard</li></a>
+              <form action="" method="POST">
+                <button class="btn btn-danger" type="submit" name="submit">Logout</button>
+              </form>
+              <?php
+            }
+            else{
+              ?>
+              <a href="<?php echo TENANT_PATH.'login.php'; ?>"><li>Login</li></a>
+              <?php
+            }
+          ?>
+          <?php
+            if(isset($_POST['submit'])){
+              unset($_GET['name'], $_GET['id'], $_SESSION['id'], $_SESSION['name']);
+              header('location:'. HOME_PATH);
+            }
+          ?>
         </div>
       </ul>
     </section>
@@ -52,16 +83,31 @@
         <h1>Welcome To Our Site</h1>
         <div class="main-form">
           <form action="" method="POST">
+            <input type="hidden" name="tenant_id" value="<?php
+              if(isset($_GET['id'])){
+                echo $_GET['id'];
+              }
+              else{
+                echo 0;
+              }
+            ?>">
             <input
               type="text"
               name="search-category"
               placeholder="Search by category"
             />
-            <input type="submit" value="SEARCH" />
+            <input type="submit" name="submit" value="SEARCH" />
           </form>
         </div>
       </div>
     </section>
+    <?php
+      if(isset($_POST['submit'])){
+        $category_name = $_POST['search-category'];
+        $tenant_id = $_POST['tenant_id'];
+        header('location:'.HOME_PATH.'search.php'.'?tenant_id='.$tenant_id.'&category_name='.$category_name);
+      }
+    ?>
 <!-- welcome section ends -->
 <!-- category section starts -->
     <section class="category">
@@ -90,64 +136,41 @@
       <h1>Recent Rents</h1>
       <hr />
       <div class="rents">
-        <div class="rent-1">
-          <img src="images/apt-1.jpg" alt="" />
-          <h2>Jannat Villa</h2>
-          <h4>10,000 tk./month</h4>
-          <ul>
-            <li>1200 sq ft</li>
-            <li>|</li>
-            <li>4 bedrooms</li>
-            <li>|</li>
-            <li>2 bathrooms</li>
-          </ul>
-          <p class="text-justify">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English.
-          </p>
-        </div>
-        <div class="rent-2">
-          <img src="images/apt-2.jpg" alt="" />
-          <h2>Malibagh Villa</h2>
-          <h4>15,000 tk./month</h4>
-          <ul>
-            <li>1500 sq ft</li>
-            <li>|</li>
-            <li>5 bedrooms</li>
-            <li>|</li>
-            <li>2 bathrooms</li>
-          </ul>
-          <p class="text-justify">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English.
-          </p>
-        </div>
-        <div class="rent-3">
-          <img src="images/apt-3.jpg" alt="" />
-          <h2>Shantinagar Villa</h2>
-          <h4>17,000 tk./month</h4>
-          <ul>
-            <li>2000 sq ft</li>
-            <li>|</li>
-            <li>5 bedrooms</li>
-            <li>|</li>
-            <li>2 bathrooms</li>
-          </ul>
-          <p class="text-justify">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English.
-          </p>
-        </div>
-      </div>
+        <?php
+          $sql = "SELECT * FROM flat WHERE tenant_id IS NOT NULL ORDER BY flat_price DESC LIMIT 3";
+          $res = mysqli_query($conn, $sql);
+          if($res == TRUE){
+              $count = mysqli_num_rows($res);
+              if($count > 0){
+                while($row=mysqli_fetch_assoc($res)){
+                  $flat_name = $row['flat_name'];
+                  $flat_image = $row['flat_image'];
+                  $flat_description = $row['flat_description'];
+                  $rent = $row['flat_price'];
+                  $flat_area = $row['flat_area'];
+                  $bedrooms = $row['number_of_bedrooms'];
+                  $bathrooms = $row['number_of_bathrooms'];
+                  ?>
+                  <div class="rent-1">
+                    <img src="admin/images/flat_images/<?php echo $flat_image; ?>" alt="" style="height:16.5rem;"/>
+                    <h2><?php echo $flat_name; ?></h2>
+                    <h4><?php echo $rent; ?> tk./month</h4>
+                    <ul>
+                      <li><?php echo $flat_area; ?>sq ft</li>
+                      <li>|</li>
+                      <li><?php echo $bedrooms; ?> bedrooms</li>
+                      <li>|</li>
+                      <li><?php echo $bathrooms; ?> bathrooms</li>
+                    </ul>
+                    <p class="text-justify">
+                      <?php echo $flat_description; ?>
+                    </p>
+                  </div>
+                  <?php
+                }
+              }
+          }
+        ?>
     </section>
     <!-- category section ends -->
     <!-- contact section starts -->

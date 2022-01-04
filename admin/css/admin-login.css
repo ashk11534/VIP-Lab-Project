@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;500&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Montserrat", sans-serif;
+    background:linear-gradient(0deg, rgba(22, 22, 22, 0.7), rgba(14, 13, 13, 0.7)), url('../../images/apt-1.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  .login-form{
+      margin: 50px 0; 
+  }
+  h1 {
+      font-weight: 700;
+      font-size: 38px;
+      color: #fff;
+      margin-top: 190px;
+  }
+  hr{
+      width: 40px;
+      margin: 0 auto;
+      height: 2px;
+      border: none;
+      background-color: #ffa200;
+      margin-top: 25px;
+  }
+  
+  .login-form .form-content{
+      border: 1px solid #dfe4ea;
+      border-radius: 4px;
+      padding: 30px;
+  }

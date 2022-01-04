@@ -1,3 +1,12 @@
+<?php include('tenant/includes/db_connect.php'); ?>
+<?php
+    if(isset($_SESSION['id'])){
+        $id = $_SESSION['id'];
+    }
+    if(isset($_SESSION['name'])){
+        $name = $_SESSION['name'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,15 +38,15 @@
       <section class="main-nav">
         <ul>
           <div class="logo">
-            <a class="navbar-brand" href="index.html">
-              <img src="images/logo.png" style="width: 80px;" class="rounded-circle" alt="logo">
-            </a>
+            <a class="navbar-brand" href="<?php echo HOME_PATH; ?>?id=<?php echo $_SESSION['id']; ?>&name=<?php echo $_SESSION['name']; ?>">
+                <img src="images/logo.png" style="width: 80px;" class="rounded-circle" alt="logo">
+              </a>
           </div>
           <div class="push"></div>
           <div class="nav-items">
-            <a href="index.html"><li>Home</li></a>
-            <a href="category.html"><li>Category</li></a>
-            <a href="about.html"><li>About</li></a>
+            <a href="<?php echo HOME_PATH; ?>?id=<?php echo $_SESSION['id']; ?>&name=<?php echo $_SESSION['name']; ?>"><li>Home</li></a>
+            <a href="category.php"><li>Category</li></a>
+            <a href="about.php"><li>About</li></a>
           </div>
         </ul>
       </section>
