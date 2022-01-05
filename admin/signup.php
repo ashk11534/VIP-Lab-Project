@@ -8,12 +8,17 @@
 <?php
     if(isset($_SESSION['login-failed'])){
         ?>
-        <p class="text-center font-weight-bold" style="color: #2ed573; background: #fff; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['login-failed']; ?></p>
+        <p class="text-center font-weight-bold vanish" style="color: #2ed573; background: #fff; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['login-failed']; ?></p>
         <?php
         unset($_SESSION['login-failed']);
     }
 ?>
-
+<script>
+    const p = document.querySelector('.vanish');
+    setTimeout(() => {
+        p.parentNode.removeChild(p);
+    }, 3000);
+</script>
 <section class="signup-form d-flex justify-content-center">
 <form action="" method="POST" enctype="multipart/form-data" class="form-content">
     <table>

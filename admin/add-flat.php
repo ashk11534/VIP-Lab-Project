@@ -24,6 +24,32 @@
     // echo $cat_arr[0];
     // echo $cat_arr[1];  
 ?>
+<?php
+    if(isset($_SESSION['delete'])){
+        ?>
+            <p class="text-center font-weight-bold vanish" style="color: #2ed573; background: #333; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['delete']; ?></p>
+        <?php
+        unset($_SESSION['delete']);
+    }
+    if(isset($_SESSION['update'])){
+        ?>
+            <p class="text-center font-weight-bold vanish" style="color: #2ed573; background: #333; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['update']; ?></p>
+        <?php
+        unset($_SESSION['update']);
+    }
+    if(isset($_SESSION['add'])){
+        ?>
+            <p class="text-center font-weight-bold vanish" style="color: #2ed573; background: #333; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['add']; ?></p>
+        <?php
+        unset($_SESSION['add']);
+    }
+?>
+<script>
+    const p = document.querySelector('.vanish');
+    setTimeout(() => {
+        p.parentNode.removeChild(p);
+    }, 3000);
+</script>
 <div class="container-fluid">
 <h2>Add Flat</h2>
 <form action="" method="POST" enctype="multipart/form-data">
@@ -87,16 +113,7 @@
         </tr> 
     </table>
 </form>
-<?php
-    if(isset($_SESSION['delete'])){
-        echo $_SESSION['delete'];
-        unset($_SESSION['delete']);
-    }
-    if(isset($_SESSION['update'])){
-        echo $_SESSION['update'];
-        unset($_SESSION['update']);
-    }
-?>
+
 <?php
     $sql = 'SELECT * FROM flat';
     $res = mysqli_query($conn, $sql);
@@ -222,14 +239,19 @@
             // echo $res2;
             if($res2 == TRUE){
                 // echo 'Flat Added successfully';
+                $_SESSION['add'] = 'Flat Added successfully';
                 header('location:'.ADMIN_PATH.'add-flat.php');
             }
             else{
-                echo 'Failed to add flat';
+                // echo 'Failed to add flat';
+                $_SESSION['add'] = 'Failed to add flat';
+                header('location:'.ADMIN_PATH.'add-flat.php');
             }
         }
         else{
-            echo 'Failed to add flat. It seems you did not upload image';
+            // echo 'Failed to add flat. It seems you did not upload image';
+            $_SESSION['add'] = 'Failed to add flat. It seems you did not upload image or insert any data';
+            header('location:'.ADMIN_PATH.'add-flat.php');
         }
 
     }

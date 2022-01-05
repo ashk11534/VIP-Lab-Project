@@ -9,17 +9,23 @@
 <?php
      if(isset($_SESSION['signup-success'])){
         ?>
-        <p class="text-center font-weight-bold" style="color: #2ed573; background: #fff; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['signup-success']; ?></p>
+        <p class="text-center font-weight-bold vanish" style="color: #2ed573; background: #fff; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['signup-success']; ?></p>
         <?php
         unset($_SESSION['signup-success']);
     }
     if(isset($_SESSION['login-failed'])){
         ?>
-        <p class="text-center font-weight-bold" style="color: #ff4757; background: #fff; padding: 2px; margin-top:10px; width: 29.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['login-failed']; ?></p>
+        <p class="text-center font-weight-bold vanish" style="color: #ff4757; background: #fff; padding: 2px; margin-top:10px; width: 29.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['login-failed']; ?></p>
         <?php
         unset($_SESSION['login-failed']);
     }
 ?>
+<script>
+    const p = document.querySelector('.vanish');
+    setTimeout(() => {
+        p.parentNode.removeChild(p);
+    }, 3000);
+</script>
 <section class="login-form d-flex justify-content-center">
 <form action="" method="POST" class="form-content">
     <table>

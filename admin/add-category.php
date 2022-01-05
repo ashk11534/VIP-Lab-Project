@@ -8,14 +8,20 @@
 <?php
    if(isset($_SESSION['category'])){
        ?>
-       <p class="text-center font-weight-bold" style="color: #2ed573; background: #fff; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['category']; ?></p>
+       <p class="text-center font-weight-bold vanish" style="color: #2ed573; background: #333; padding: 2px; margin-top:10px; width: 19.5%; margin-left: auto; margin-right: auto; border-radius: 4px;"><?php echo $_SESSION['category']; ?></p>
        <?php
        unset($_SESSION['category']);
     
 } 
 ?>
+<script>
+    const p = document.querySelector('.vanish');
+    setTimeout(() => {
+        p.parentNode.removeChild(p);
+    }, 3000);
+</script>
 
-<form action="" method="POST" style="border: 1px solid #333; padding: 20px; margin-top:10px;">
+<form action="" method="POST" style="border: 1px solid #747d8c; padding: 20px; margin-top:10px; border-radius: 4px;">
     <table>
         <tr>
             <td>Category Name</td>
